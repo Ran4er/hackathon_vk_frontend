@@ -5,4 +5,4 @@ export { LeaderBoard } from './LeaderBoard';
 
 export type { HomeProps } from './Home';
 
-import "../assets/globals.css";
+import "../output.css";

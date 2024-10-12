@@ -12,7 +12,7 @@ import { UserInfo } from '@vkontakte/vk-bridge';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import { Icon24UsersOutline, Icon28HomeOutline, Icon28CalendarOutline, Icon36CoinsStacks3Outline } from '@vkontakte/icons';
 
-import "../assets/globals.css";
+import "../output.css";
 
 export interface HomeProps extends NavIdProps {
   fetchedUser?: UserInfo;
@@ -25,10 +25,6 @@ const tabbarStyle = {
   display: "flex", // Выровнять элементы по центру
   justifyContent: "space-around", // Равномерное распределение элементов
   alignItems: "center", // Вертикальное выравнивание
-};
-
-const mainStyle = {
-  backgroundColor: "#F4F4F4",
 };
 
 export const Home: FC<HomeProps> = ({ id }) => {
@@ -126,13 +122,13 @@ export const Home: FC<HomeProps> = ({ id }) => {
           <TabbarItem  onClick={() => routeNavigator.push('/home')}>
             <Icon28HomeOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/Calendar')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/сalendar')}>
             <Icon28CalendarOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/Users')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/leaderBoard')}>
             <Icon24UsersOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/Coins')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/coins')}>
             <Icon36CoinsStacks3Outline width={30} height={30} />
           </TabbarItem>
         </Tabbar>

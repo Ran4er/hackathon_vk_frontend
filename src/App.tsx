@@ -3,7 +3,7 @@ import bridge, { UserInfo } from '@vkontakte/vk-bridge';
 import { View, SplitLayout, SplitCol, ScreenSpinner } from '@vkontakte/vkui';
 import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router';
 
-import { EventDetails, Home, CalendarPage } from './panels';
+import { Home, LeaderBoard } from './panels';
 import { DEFAULT_VIEW_PANELS } from './routes';
 
 export const App = () => {
@@ -25,7 +25,7 @@ export const App = () => {
       <SplitCol>
         <View activePanel={activePanel}>
           <Home id="home" fetchedUser={fetchedUser} />
-          <CalendarPage id="calendar" />
+          <LeaderBoard id="leaderBoard"/>
         </View>
       </SplitCol>
     </SplitLayout>

@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Panel, Group, Card, NavIdProps, Button } from '@vkontakte/vkui';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
-import "../assets/globals.css"; // Подключение глобальных стилей
+
+import "../output.css";
 
 export interface EventDetailsProps extends NavIdProps {
   event: {
