@@ -19,7 +19,7 @@ export interface HomeProps extends NavIdProps {
 const tabbarStyle = {
   backgroundColor: "#FFFFFF",
   borderRadius: "50px 50px 0 0", // Закругление только верхних углов
-  height: "70px", // Оптимальная высота для панели
+  height: "4em", // Оптимальная высота для панели
   display: "flex", // Выровнять элементы по центру
   justifyContent: "space-around", // Равномерное распределение элементов
   alignItems: "center", // Вертикальное выравнивание
@@ -28,6 +28,15 @@ const tabbarStyle = {
 const mainStyle = {
   backgroundColor: "#F4F4F4",
 };
+
+const iconStyle = {
+  color: "#000000",
+  width: "30px",
+  height: "30px",
+
+};
+
+
 
 export const Home: FC<HomeProps> = ({ id }) => {
   const routeNavigator = useRouteNavigator();
@@ -38,7 +47,7 @@ export const Home: FC<HomeProps> = ({ id }) => {
         {/* Топовые элементы */}
         <div className="p-4">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">Questify</div>
+            <div className="text-2xl font-bold text-black">Questify</div>
             <div className="flex items-center">
               <span className="text-pink-500 font-bold text-lg mr-2">1400</span>
               <img src="../assets/dog.png" alt="dog" width={40} height={40} />
@@ -47,18 +56,18 @@ export const Home: FC<HomeProps> = ({ id }) => {
 
           {/* Кнопки под шапкой */}
           <div className="flex justify-between my-3">
-            <button className="bg-gray-200 rounded-full px-4 py-1">Рекомендации</button>
-            <button className="bg-gray-200 rounded-full px-4 py-1">Ближайшее</button>
+            <button className="bg-black rounded-full px-4 py-1 text-white">Рекомендации</button>
+            <button className="bg-white rounded-full px-4 py-1 text-black">Ближайшее</button>
           </div>
 
           {/* Категории */}
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="bg-red-200 text-red-600 px-3 py-1 rounded-full">be healthy</span>
-            <span className="bg-blue-200 text-blue-600 px-3 py-1 rounded-full">be pro</span>
-            <span className="bg-green-200 text-green-600 px-3 py-1 rounded-full">be eco</span>
-            <span className="bg-purple-200 text-purple-600 px-3 py-1 rounded-full">be fit</span>
-            <span className="bg-orange-200 text-orange-600 px-3 py-1 rounded-full">be open</span>
-            <span className="bg-pink-200 text-pink-600 px-3 py-1 rounded-full">be friendly</span>
+            <span className="bg-text-white text-itmored px-3 py-1 rounded-full">be healthy</span>
+            <span className="bg-text-white text-itmoblue px-3 py-1 rounded-full">be pro</span>
+            <span className="bg-text-white text-itmogreen px-3 py-1 rounded-full">be eco</span>
+            <span className="bg-text-white text-itmopurple px-3 py-1 rounded-full">be fit</span>
+            <span className="bg-text-white text-itmoorange px-3 py-1 rounded-full">be open</span>
+            <span className="bg-text-white text-itmopink px-3 py-1 rounded-full">be friendly</span>
           </div>
 
           {/* Карточка 1 */}
@@ -122,16 +131,16 @@ export const Home: FC<HomeProps> = ({ id }) => {
       <FixedLayout vertical="bottom">
         <Tabbar style={tabbarStyle}>
           <TabbarItem  onClick={() => routeNavigator.push('/home')}>
-            <Icon28HomeOutline width={30} height={30} />
+            <Icon28HomeOutline style={iconStyle} />
           </TabbarItem>
           <TabbarItem  onClick={() => routeNavigator.push('/Calendar')}>
-            <Icon28CalendarOutline width={30} height={30} />
+            <Icon28CalendarOutline style={iconStyle} />
           </TabbarItem>
           <TabbarItem  onClick={() => routeNavigator.push('/Users')}>
-            <Icon24UsersOutline width={30} height={30} />
+            <Icon24UsersOutline style={iconStyle} />
           </TabbarItem>
           <TabbarItem  onClick={() => routeNavigator.push('/Coins')}>
-            <Icon36CoinsStacks3Outline width={30} height={30} />
+            <Icon36CoinsStacks3Outline style={iconStyle} />
           </TabbarItem>
         </Tabbar>
       </FixedLayout>
