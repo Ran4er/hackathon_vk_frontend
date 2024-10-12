@@ -124,13 +124,13 @@ export const Home: FC<HomeProps> = ({ id }) => {
           <TabbarItem  onClick={() => routeNavigator.push('/home')}>
             <Icon28HomeOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/calendar')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/Calendar')}>
             <Icon28CalendarOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/users')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/Users')}>
             <Icon24UsersOutline width={30} height={30} />
           </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/coins')}>
+          <TabbarItem  onClick={() => routeNavigator.push('/Coins')}>
             <Icon36CoinsStacks3Outline width={30} height={30} />
           </TabbarItem>
         </Tabbar>
