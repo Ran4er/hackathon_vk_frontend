@@ -1,44 +1,48 @@
 import { FC } from 'react';
 import {
   Panel,
-  PanelHeader,
-  Header,
-  Button,
-  Group,
-  Cell,
-  Div,
-  Avatar,
+  TabbarItem,
+  FixedLayout,
   NavIdProps,
+  Tabbar,
 } from '@vkontakte/vkui';
 import { UserInfo } from '@vkontakte/vk-bridge';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
+import { Icon24UsersOutline, Icon28HomeOutline, Icon24CalendarOutline, Icon36CoinsStacks3Outline  } from '@vkontakte/icons';
+
+import "../assets/globals.css";
+import { getRoundedClassName } from '@vkontakte/vkui/dist/components/ToolButton/ToolButton';
 
 export interface HomeProps extends NavIdProps {
   fetchedUser?: UserInfo;
 }
 
-export const Home: FC<HomeProps> = ({ id, fetchedUser }) => {
-  const { photo_200, city, first_name, last_name } = { ...fetchedUser };
+const tabbarStyle = {
+  backgroundColor: "#FFFFFF",
+  getRoundedClassName: "15px 15px",
+};
+
+export const Home: FC<HomeProps> = ({ id }) => {
   const routeNavigator = useRouteNavigator();
 
   return (
     <Panel id={id}>
-      <PanelHeader>Главная</PanelHeader>
-      {fetchedUser && (
-        <Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
-          <Cell before={photo_200 && <Avatar src={photo_200} />} subtitle={city?.title}>
-            {`${first_name} ${last_name}`}
-          </Cell>
-        </Group>
-      )}
-
-      <Group header={<Header mode="secondary">Navigation Example</Header>}>
-        <Div>
-          <Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('persik')}>
-            Покажите Персика, пожалуйста!
-          </Button>
-        </Div>
-      </Group>
+      <FixedLayout>
+        <Tabbar style={tabbarStyle}>
+          <TabbarItem>
+            <Icon28HomeOutline width={30} height={30}/>
+          </TabbarItem>
+          <TabbarItem>
+            <img alt="calendar" src="../assets/calendar_outline_28.png" width={30} height={30} />
+          </TabbarItem>
+          <TabbarItem>
+            <Icon24UsersOutline />
+          </TabbarItem>
+          <TabbarItem>
+            <Icon36CoinsStacks3Outline />
+          </TabbarItem>
+        </Tabbar>
+      </FixedLayout>
     </Panel>
   );
 };
