@@ -1,0 +1,9 @@
+.header_main {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 4rem;
+    width: 24rem;
+    height: 4rem;
+}

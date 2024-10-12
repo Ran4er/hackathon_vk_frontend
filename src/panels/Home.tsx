@@ -1,137 +1,137 @@
 import { FC } from 'react';
 import {
   Panel,
-  TabbarItem,
   FixedLayout,
-  NavIdProps,
-  Tabbar,
-  Group,
   Card,
+  Subhead,
+  Button,
+  Avatar,
+  Div,
+  Text,
+  Group,
+  Title,
+  Spacing
 } from '@vkontakte/vkui';
-import { UserInfo } from '@vkontakte/vk-bridge';
-import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
-import { Icon24UsersOutline, Icon28HomeOutline, Icon28CalendarOutline, Icon36CoinsStacks3Outline } from '@vkontakte/icons';
-
+import TabBar from '../components/Tabbar/Tabbar';
 import "../output.css";
+import "../assets/style.css";
 
-export interface HomeProps extends NavIdProps {
-  fetchedUser?: UserInfo;
+import EventCard from '../components/EventCard/EventCard';
+
+import BallEvent from '../assets/event/ball.jpg';
+import VkHack from '../assets/event/vk_hack.jpg';
+import SportEvent from '../assets/event/sportEvent.png'; 
+
+import AvatarImage from '../assets/avatar/dog.jpg';
+import CoinImage from '../assets/coin.png';
+import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
+import { DEFAULT_VIEW_PANELS } from '../routes';
+
+export interface HomeProps {
+  id: string;
 }
 
-const tabbarStyle = {
-  backgroundColor: "#FFFFFF",
-  borderRadius: "50px 50px 0 0", // Закругление только верхних углов
-  height: "70px", // Оптимальная высота для панели
-  display: "flex", // Выровнять элементы по центру
-  justifyContent: "space-around", // Равномерное распределение элементов
-  alignItems: "center", // Вертикальное выравнивание
-};
-
 export const Home: FC<HomeProps> = ({ id }) => {
-  const routeNavigator = useRouteNavigator();
+
+  const routerNavigator = useRouteNavigator();
+
+  const events = [
+    {
+      date: '2024-11-20',
+      title: 'Бал в ИТМО',
+      category: 'be friendly',
+      points: 200,
+      image: BallEvent,
+    },
+    {
+      date: '2024-10-12',
+      title: 'Хакатон VK Mini Apps x ITMO Hack',
+      category: 'be pro',
+      points: 500,
+      image: VkHack,
+    },
+  ];
 
   return (
     <Panel id={id}>
       <Group>
-        {/* Топовые элементы */}
-        <div className="p-4">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">Questify</div>
-            <div className="flex items-center">
-              <span className="text-pink-500 font-bold text-lg mr-2">1400</span>
-              <img src="../assets/dog.png" alt="dog" width={40} height={40} />
-            </div>
-          </div>
+        <Div className="bg-[#F4F4F4]">
+          {/* Верхняя часть страницы */}
+          <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '64px' }}>
+            <Title  level="2" weight="1" style={{fontSize: '32px'}}>Questify</Title>
+            <Div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+              <Button mode="secondary" size="m" style={{backgroundColor: 'white'}} before={<img src={CoinImage} alt="coin" width={19} height={19} />}>1400</Button>
+              <Avatar src={AvatarImage} size={40} onClick={() => {routerNavigator.push(DEFAULT_VIEW_PANELS.PROFILE)}} />
+            </Div>
+          </Div>
 
           {/* Кнопки под шапкой */}
-          <div className="flex justify-between my-3">
-            <button className="bg-gray-200 rounded-full px-4 py-1">Рекомендации</button>
-            <button className="bg-gray-200 rounded-full px-4 py-1">Ближайшее</button>
-          </div>
+          <Div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+            <Button mode="primary" size="l" stretched>Рекомендации</Button>
+            <Button mode="secondary" size="l" stretched>Ближайшее</Button>
+          </Div>
 
           {/* Категории */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="bg-red-200 text-red-600 px-3 py-1 rounded-full">be healthy</span>
-            <span className="bg-blue-200 text-blue-600 px-3 py-1 rounded-full">be pro</span>
-            <span className="bg-green-200 text-green-600 px-3 py-1 rounded-full">be eco</span>
-            <span className="bg-purple-200 text-purple-600 px-3 py-1 rounded-full">be fit</span>
-            <span className="bg-orange-200 text-orange-600 px-3 py-1 rounded-full">be open</span>
-            <span className="bg-pink-200 text-pink-600 px-3 py-1 rounded-full">be friendly</span>
-          </div>
+          <Div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#DD1414', backgroundColor: 'white'  }}>be healthy</Button>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#0042FF', backgroundColor: 'white'  }}>be pro</Button>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#3FC116', backgroundColor: 'white'  }}>be eco</Button>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FF76FE', backgroundColor: 'white'  }}>be fit</Button>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FC9316', backgroundColor: 'white'  }}>be open</Button>
+            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FF76FE', backgroundColor: 'white'  }}>be friendly</Button>
+          </Div>
+
+          <Subhead style={{ color: 'gray', marginBottom: '16px', textAlign: 'center'}}>Категории</Subhead>
 
           {/* Карточка 1 */}
-          <Card mode="shadow" className="mb-4">
-            <div className="p-4">
-              <img
-                src="../assets/ball.jpg"
-                alt="Event"
-                className="rounded-lg w-full mb-2"
+          <Card mode="shadow" style={{ height: '120px', width: '372px', borderRadius: '22px', overflow: 'hidden' }}>
+            {events.map((event, index) => (
+              <EventCard 
+                key={index}
+                eventTitle={event.title}
+                eventDate={event.date}
+                eventCategory={event.category}
+                eventPoints={event.points}
+                eventImage={event.image}
               />
-              <div className="flex justify-between items-center">
-                <span className="bg-purple-200 text-purple-600 px-2 py-1 rounded-full">be friendly</span>
-                <span className="text-pink-500 font-bold">200</span>
-              </div>
-              <div className="mt-2">
-                <div className="font-bold">Бал в ИТМО</div>
-                <div className="text-gray-500 text-sm">20.11.2024</div>
-              </div>
-            </div>
+            ))}
+            <Spacing size={16} />
           </Card>
+          
+          
 
           {/* Карточка 2 */}
-          <Card mode="shadow" className="mb-4">
-            <div className="p-4">
-              <img
-                src="../assets/vk_hack.jpg"
-                alt="Hackathon"
-                className="rounded-lg w-full mb-2"
-              />
-              <div className="flex justify-between items-center">
-                <span className="bg-blue-200 text-blue-600 px-2 py-1 rounded-full">be pro</span>
-                <span className="text-pink-500 font-bold">500</span>
-              </div>
-              <div className="mt-2">
-                <div className="font-bold">Хакатон VK Mini Apps x ITMO Hack</div>
-                <div className="text-gray-500 text-sm">11.10.2024 - 13.10.2024</div>
-              </div>
-            </div>
+          <Card mode="shadow">
+            <Div>
+              <img src={VkHack} alt="Hackathon" style={{ borderRadius: '8px', width: '100%', marginBottom: '8px' }} />
+              <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text weight="2" style={{ color: 'blue' }}>be pro</Text>
+                <Button mode="secondary" size="s" stretched>500</Button>
+              </Div>
+              <Text weight="1" style={{ marginTop: '8px' }}>Хакатон VK Mini Apps x ITMO Hack</Text>
+              <Text style={{ color: 'gray' }}>11.10.2024 - 13.10.2024</Text>
+            </Div>
           </Card>
 
-          {/* Дополнительная карточка */}
-          <Card mode="shadow" className="mb-4">
-            <div className="p-4">
-              <img
-                src="../assets/sport_event.jpg"
-                alt="Sport Event"
-                className="rounded-lg w-full mb-2"
-              />
-              <div className="flex justify-between items-center">
-                <span className="bg-red-200 text-red-600 px-2 py-1 rounded-full">be fit</span>
-                <span className="text-pink-500 font-bold">300</span>
-              </div>
-              <div className="mt-2">
-                <div className="font-bold">Спортивное мероприятие</div>
-                <div className="text-gray-500 text-sm">25.11.2024</div>
-              </div>
-            </div>
+          <Spacing size={16} />
+
+          {/* Карточка 3 */}
+          <Card mode="shadow">
+            <Div>
+              <img src={SportEvent} alt="Sport Event" style={{ borderRadius: '8px', width: '100%', marginBottom: '8px' }} />
+              <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text weight="2" style={{ color: 'red' }}>be fit</Text>
+                <Button mode="secondary" size="s" stretched>300</Button>
+              </Div>
+              <Text weight="1" style={{ marginTop: '8px' }}>Спортивное мероприятие</Text>
+              <Text style={{ color: 'gray' }}>25.11.2024</Text>
+            </Div>
           </Card>
-        </div>
+        </Div>
       </Group>
+
       <FixedLayout vertical="bottom">
-        <Tabbar style={tabbarStyle}>
-          <TabbarItem  onClick={() => routeNavigator.push('/home')}>
-            <Icon28HomeOutline width={30} height={30} />
-          </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/сalendar')}>
-            <Icon28CalendarOutline width={30} height={30} />
-          </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/leaderBoard')}>
-            <Icon24UsersOutline width={30} height={30} />
-          </TabbarItem>
-          <TabbarItem  onClick={() => routeNavigator.push('/coins')}>
-            <Icon36CoinsStacks3Outline width={30} height={30} />
-          </TabbarItem>
-        </Tabbar>
+        <TabBar />
       </FixedLayout>
     </Panel>
   );

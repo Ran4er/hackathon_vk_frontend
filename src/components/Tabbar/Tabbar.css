@@ -1,0 +1,24 @@
+.tabbar {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    border-radius: 50px 50px 0px 0px;
+  }
+  
+  .tabbar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+  }
+  
+  .tabbar-item.active {
+    background-color: #F4F4F4; /* Круглый фон активной иконки */
+    border-radius: 50%; /* Закругленные края */
+  }

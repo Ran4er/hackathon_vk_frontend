@@ -1,13 +1,14 @@
 import { useState, useEffect, ReactNode } from 'react';
 import bridge, { UserInfo } from '@vkontakte/vk-bridge';
-import { View, SplitLayout, SplitCol, ScreenSpinner } from '@vkontakte/vkui';
+import { View, SplitLayout, SplitCol, ScreenSpinner, Root } from '@vkontakte/vkui';
 import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router';
 
-import { Home, LeaderBoard } from './panels';
-import { DEFAULT_VIEW_PANELS } from './routes';
+import { CalendarPage, Home, LeaderBoard } from './panels';
+import { DEFAULT_ROOT, DEFAULT_VIEW, DEFAULT_VIEW_PANELS } from './routes';
+import { DEFAULT_TRIGGER } from '@vkontakte/vkui/dist/lib/floating';
 
 export const App = () => {
-  const { panel: activePanel = DEFAULT_VIEW_PANELS.HOME } = useActiveVkuiLocation();
+  const { panel: activePanel = DEFAULT_VIEW_PANELS.HOME, view: activeView = DEFAULT_TRIGGER } = useActiveVkuiLocation();
   const [fetchedUser, setUser] = useState<UserInfo | undefined>();
   const [popout, setPopout] = useState<ReactNode | null>(<ScreenSpinner size="large" />);
 
@@ -23,10 +24,13 @@ export const App = () => {
   return (
     <SplitLayout popout={popout}>
       <SplitCol>
-        <View activePanel={activePanel}>
-          <Home id="home" fetchedUser={fetchedUser} />
-          <LeaderBoard id="leaderBoard"/>
-        </View>
+        <Root id={DEFAULT_ROOT} activeView={activeView}>
+          <View id={DEFAULT_VIEW} activePanel={activePanel}>
+            <Home id="home" />
+            <LeaderBoard id="leaderBoard"/>
+            <CalendarPage id="calendar" />
+          </View>
+        </Root>
       </SplitCol>
     </SplitLayout>
   );
