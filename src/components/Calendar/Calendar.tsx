@@ -1,5 +1,5 @@
 import { lightFormat } from 'date-fns';
-import { Calendar, Checkbox, FormItem, FormLayoutGroup, LocaleProvider, Select } from '@vkontakte/vkui';
+import { Calendar, LocaleProvider } from '@vkontakte/vkui';
 import { useState } from 'react';
 
 const CalendarEvents = () => {

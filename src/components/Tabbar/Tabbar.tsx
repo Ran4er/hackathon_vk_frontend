@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Icon24UsersOutline, Icon28HomeOutline, Icon36CoinsStacks3Outline, Icon28CalendarOutline } from '@vkontakte/icons';
 import './TabBar.css'; // Здесь будет ваш CSS
 import { DEFAULT_VIEW_PANELS } from '../../routes';
-import { useActiveVkuiLocation, useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
+import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 
 const TabBar = () => {
   const [activePage, setActivePage] = useState(); // Храним состояние текущей страницы
