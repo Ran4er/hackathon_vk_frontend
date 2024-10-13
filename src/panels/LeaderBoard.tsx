@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import { Div, Panel, PanelHeader, Avatar, Button, Text } from '@vkontakte/vkui';
+import { Div, Panel, PanelHeader, Avatar, Button, Text, NavIdProps } from '@vkontakte/vkui';
 
-const LeaderboardPage: FC = () => {
+export interface LeaderBoardPageProps extends NavIdProps{}
+
+const LeaderboardPage: FC<LeaderBoardPageProps> = ({ id }) => {
   return (
-    <Panel>
+    <Panel id={id}>
       <PanelHeader>Рейтинг</PanelHeader>
       <Div style={{ textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>

@@ -1,10 +1,12 @@
 import { FC } from 'react';
-import { Div, Panel, PanelHeader, Tabs, TabsItem, Calendar, CardGrid, Card, Text } from '@vkontakte/vkui';
+import { Div, Panel, PanelHeader, Tabs, TabsItem, Calendar, CardGrid, Card, Text, NavIdProps } from '@vkontakte/vkui';
 import { Icon24CalendarOutline, Icon28HomeOutline, Icon24UsersOutline, Icon28MarketOutline } from '@vkontakte/icons';
 
-const CalendarPage: FC = () => {
+export interface CalendarPageProps extends NavIdProps{}
+
+const CalendarPage: FC<CalendarPageProps> = ({ id }) => {
   return (
-    <Panel>
+    <Panel id={id}>
       <PanelHeader>Календарь</PanelHeader>
 
       {/* Event Filter Tabs */}
@@ -16,8 +18,7 @@ const CalendarPage: FC = () => {
       {/* Calendar Component */}
       <Div style={{ padding: '0 16px' }}>
         <Calendar 
-          size="m" 
-          selectionType="single" 
+          size="m"
           onChange={() => {}} 
           value={new Date()} 
         />

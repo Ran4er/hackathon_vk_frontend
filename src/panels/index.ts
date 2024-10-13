@@ -1,7 +1,6 @@
 export { Home } from './Home';
-export { CalendarPage } from './CalendarPage';
 export { EventDetails } from './EventDetails';
-export { LeaderBoard } from './LeaderBoard';
+export { CalendarPage } from './CalendarPageFirst';
 
 export type { HomeProps } from './Home';
 

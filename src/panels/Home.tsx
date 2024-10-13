@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   Panel,
   FixedLayout,
@@ -27,6 +27,8 @@ import CoinImage from '../assets/coin.png';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import { DEFAULT_VIEW_PANELS } from '../routes';
 
+import vkBridge from '@vkontakte/vk-bridge';
+
 export interface HomeProps {
   id: string;
 }
@@ -34,6 +36,33 @@ export interface HomeProps {
 export const Home: FC<HomeProps> = ({ id }) => {
 
   const routerNavigator = useRouteNavigator();
+
+  useEffect(() => {
+    const [userToken, setUserToken] = useState('');
+    vkBridge.send('VKWebAppGetAuthToken', {
+      app_id: 52451399,
+      scope: 'friends, groups',
+    })
+      .then(data => {
+        setUserToken(data.access_token);
+        console.log('Успешное чтение пользовательского токена', data.access_token);
+      })
+      .catch(error => {
+        console.log('Ошибка при чтении пользовательского токена', error);
+      });
+
+      fetch('/check_token/?=userToken', {
+        method: 'POST',
+        body: JSON.stringify({
+          user_token: userToken, 
+        }), headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then((response)=>response.json())
+        .then((json) => console.log(json));
+
+  });
 
   const events = [
     {
@@ -49,6 +78,13 @@ export const Home: FC<HomeProps> = ({ id }) => {
       category: 'be pro',
       points: 500,
       image: VkHack,
+    },
+    {
+      date: '2024-11-05',
+      title: 'Шахматный турнир',
+      category: 'be sport',
+      points: 300,
+      image: SportEvent,
     },
   ];
 

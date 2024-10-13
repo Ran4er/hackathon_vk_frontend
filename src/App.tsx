@@ -3,7 +3,8 @@ import bridge, { UserInfo } from '@vkontakte/vk-bridge';
 import { View, SplitLayout, SplitCol, ScreenSpinner, Root } from '@vkontakte/vkui';
 import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router';
 
-import { CalendarPage, Home, LeaderBoard } from './panels';
+import { Home, CalendarPage } from './panels';
+import LeaderboardPage from './panels/LeaderBoard';
 import { DEFAULT_ROOT, DEFAULT_VIEW, DEFAULT_VIEW_PANELS } from './routes';
 import { DEFAULT_TRIGGER } from '@vkontakte/vkui/dist/lib/floating';
 
@@ -27,7 +28,7 @@ export const App = () => {
         <Root id={DEFAULT_ROOT} activeView={activeView}>
           <View id={DEFAULT_VIEW} activePanel={activePanel}>
             <Home id="home" />
-            <LeaderBoard id="leaderBoard"/>
+            <LeaderboardPage id="leaderBoard"/>
             <CalendarPage id="calendar" />
           </View>
         </Root>
