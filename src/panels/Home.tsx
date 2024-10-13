@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   Panel,
   FixedLayout,
@@ -26,6 +26,9 @@ import AvatarImage from '../assets/avatar/dog.jpg';
 import CoinImage from '../assets/coin.png';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import { DEFAULT_VIEW_PANELS } from '../routes';
+import ColorSwapper from '../utils/colorswapper';
+import ColorSwapper_for1 from '../utils/colorswapper_for1.tsx';
+
 
 export interface HomeProps {
   id: string;
@@ -52,6 +55,21 @@ export const Home: FC<HomeProps> = ({ id }) => {
     },
   ];
 
+  // for swapping buttons
+  const [isSwapped1, setIsSwapped1] = useState<boolean>(false);
+  const [isSwapped2, setIsSwapped2] = useState<boolean>(false);
+
+  const toggleColors = (buttonNumber: number) => {
+    if (buttonNumber === 1) {
+      setIsSwapped1(prev => !prev);
+      setIsSwapped2(prev => !prev);
+    } else {
+      setIsSwapped2(prev => !prev);
+      setIsSwapped1(prev => !prev);
+    }
+  };
+
+
   return (
     <Panel id={id}>
       <Group>
@@ -67,18 +85,31 @@ export const Home: FC<HomeProps> = ({ id }) => {
 
           {/* Кнопки под шапкой */}
           <Div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
-            <Button mode="primary" size="l" stretched>Рекомендации</Button>
-            <Button mode="secondary" size="l" stretched>Ближайшее</Button>
+          <ColorSwapper 
+            buttonText="Рекомендации" 
+            colorbg="black" 
+            colortext="white" 
+            classname_="px-3 py-1 rounded-full" 
+            onClick={() => toggleColors(1)} 
+            isSwapped={isSwapped1} 
+          />
+          <ColorSwapper 
+            buttonText="Предстоящие" 
+            colorbg="white" 
+            colortext="black" 
+            classname_="px-4 py-1 rounded-full" 
+            onClick={() => toggleColors(2)} 
+            isSwapped={isSwapped2} />
           </Div>
 
           {/* Категории */}
           <Div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#DD1414', backgroundColor: 'white'  }}>be healthy</Button>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#0042FF', backgroundColor: 'white'  }}>be pro</Button>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#3FC116', backgroundColor: 'white'  }}>be eco</Button>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FF76FE', backgroundColor: 'white'  }}>be fit</Button>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FC9316', backgroundColor: 'white'  }}>be open</Button>
-            <Button rounded={true} mode="secondary" size="m" style={{ color: '#FF76FE', backgroundColor: 'white'  }}>be friendly</Button>
+          <span><ColorSwapper_for1 buttonText="be healthy" colorbg="white" colortext="red"/></span>
+            <span><ColorSwapper_for1 buttonText="be pro" colorbg="white" colortext="blue" /></span>
+            <span><ColorSwapper_for1 buttonText="be eco" colorbg="white" colortext="green" /></span>
+            <span><ColorSwapper_for1 buttonText="be fit" colorbg="white" colortext="purple" /></span>
+            <span><ColorSwapper_for1 buttonText="be open" colorbg="white" colortext="orange" /></span>
+            <span><ColorSwapper_for1 buttonText="be friendly" colorbg="white" colortext="pink" /></span>
           </Div>
 
           <Subhead style={{ color: 'gray', marginBottom: '16px', textAlign: 'center'}}>Категории</Subhead>
